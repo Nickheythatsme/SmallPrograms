@@ -1,0 +1,39 @@
+Nicholas Grout
+Program 1 Review
+
+    In this project, the goal was to make a galaxy with planets, and to 
+determine which planets were livable. This program was an exercise in object
+oriented programing, where a program consists of small objects which usually
+have some sort of heirarchical relationship between one another.
+    In this OOP program, we started with a celestial body. This celestial body
+had only a name and a diameter. This is because all objects in a solar system,
+from the sun to the moons, to each planet, will have both a name and a diameter.
+From the celestial body class we derive the moon, sun, and planet classes. The
+moon simply has a size, rotation, and revolution time in addition to the 
+celestial body class. The sun has very little added, basically just acts as an
+alias for the celestial body.
+//Fix the sun part***
+    The planet class has moons and rotation and distance fromt the sun,
+as well as some functions to generate random numbers (floats and integers). 
+The planet class contains moons in a "has a" relationship, where the number of 
+moons depends on the random number and the max allowed moons defined in the 
+planet constructor.
+    Derived from the planet class we have a node class. This node class 
+handles the DLL of planets that is needed for this program. The node class has 
+functions to connect the next planet, go to the next planet, and supporting 
+functions to help do this.
+    Derived from the node class we have the inner planet and the 
+outer planet classes. Inner planets are closer in, have less moons, and have a 
+atmosphere. The atmosphere is determined randomly through the planet class's 
+random float function, and helps indicate the planet's livability.
+    The outer planet class. Outer planets have a 50/50 chance to have rings or 
+be made of gas, they also have more moons. The outer planets are ALWAYS further
+out than the inner planets.
+    The solar system and galaxy classes have a "has a" relationship with all
+celestial bodies.
+    In terms of structure, I am happy with how my heiarchy turned out. However
+I believe I should have started out with the node class. This way I could put
+objects into a DLL at any point I wanted. As long as I have a node function
+to insert a new, already made node, losing memory/functions of derived classes
+wouldn't be an issue. This is because of upcasting, where a base class pointer
+can be treated as a derived class pointer.

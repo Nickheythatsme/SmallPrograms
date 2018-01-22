@@ -1,0 +1,76 @@
+Nicholas Grout
+Assignment 3 review
+
+Questions: 
+1) How well did the data structure selected perform for the assigned application?
+2) Would a different data structure work better? If so, which one and why...
+3) What was efficient about your design and use of the data structure?
+4) What was not efficient?
+5) What would you do differently if you had more time to solve the problem?
+
+    The data structure used in this program was a hash table. The hash table 
+works by seperating nodes, based on a keyvalue, into seperate LLLs called 
+'chains.' A key part of this ADT is the hash function, which determines the
+chain a to which a node will be attached. The hash function does this by using
+a keyvalue, which can be a name, address, or any piece of data, and applies a
+function to this keyvalue to get a corresponding index. The hash function's goal
+is to evenly distribute data across all chains. Ideally each chain will have the
+same number of nodes.
+    This structure allows for easy insertion, search, and removal, and is easy
+to implement since the data is kept in LLLs. It also allows for flexible memory
+usage, while simultaneously reducing search time by dividing up nodes. When you
+search for a node, you only search the nodes in that chain, instead of all the
+nodes in the ADT.
+    For this program, we inserted nodes based on an event's name, location, and
+the keywords it used. This means an event sometimes had 7 nodes that pointed to
+it. This is great because it allows us to expand the user's search capability.
+However there are some drawbacks which we can already see, even with only 70
+or so events. One of these drawbacks is that many events have the same location
+or keyword, and this leads to many more collisions. For example, many of the
+events in our list take place in 'Portland', and because of this there are 
+always 10 or so extra nodes in that corresponding chain. This isn't a problem
+now with (up to) 140 nodes, however with 10,000 or 100,000,000 nodes this would
+obviously become an issue. To solve this, we could change the chains to be more
+advanced, maybe even being their own hash table. Then we could set a keyvalue
+to 'Portland', but also include the context of this keyword, allowing us to
+sort this node more appropriately. This way a user could search for 'Portland'
+and 'beer' and get all the events that are in Portland, and that also have 
+beer (which I guess is probably all of them, so bad example). Another option
+might be to use a tree instead of a LLL for the chains. Then again we could use
+context and sort nodes based on the first keyvalue, and then a second one as 
+well. This would limit us to only 2 keyvalues though, which wouldn't help as
+much.
+    I think the ideal data structure in this scenario would be to have a hash
+table, but each index in this hash table points to another hash table. This 
+would obviously increase the overhead, but would allow us to search for more 
+than one keyword when looking for an event. This would help the user find the 
+target event more quickly. One drawback of this approach would be that many
+more nodes would be added (7^2 in our case).
+    In our design we focused on efficiency wherever possible. Forexample, in
+the constructors we use pointers when initializing arrays rather than starting
+back at the beginning of the array everytime. This would be important if we had
+much larger arrays in our hash table. Another example would be in the event
+struct, where we use time_t to hold the time and date of the event. This is
+important because instead of ~17 bytes for a string of time of day and the date,
+we have an 8 byte way to represent the same thing.
+    Another example would be in the retrieve function. This function returns an
+array of all relevant events. In our program we do this by creating a new LLL
+where each node points to these target events. This way we know the number of
+events there will be in the array, this prevents array resizing/shifting. Then
+we copy each event in the LLL (using the top of the LLL) into the array. This
+is much more efficient than remaking the array for every event. This way we also
+only traverse through the ADT once, something that can be very costly in larger
+data sets.
+    If I had more time to solve the problem I would certainly spend time
+collecting a large data sets of events (~10,000), either scraping websites or 
+making random ones. This would be the first step towards measuring efficiency 
+and speed. After I have a large data set I would impliment the layered hash
+table approach. The benefits I have listed above. The major drawback of this
+structure would be the increased number of nodes. Each node is 24 bytes, which
+would be problematic if we had 10,000 more nodes, each with up to 7 additional
+nodes. It would be a good way to implement a structure which can search multiple
+keywords very quickly however. 
+    One definite way the speed could be increased is if we implemented circular
+stacks instead of LLLs. These circular arrays can be arranged into an LLL, and
+can offer much faster access speed for nodes in that array. I would also
+implement the master LLL of all events this way.

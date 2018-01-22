@@ -1,0 +1,62 @@
+Nicholas Grout
+Assignment 4
+filename: Review1.txt
+
+1) How well did the data structure selected perform for the assigned 
+   application?
+2) Would a different data structure work better? If so, which one and why...
+3) What was efficient about your design and use of the data structure?
+4) What was not efficient?
+5) What would you do differently if you had more time to solve the problem?
+
+    This data structure worked for the task at hand. However I have some
+concerns. The main one being the in ability to easily search for data by values
+other than the name. This could be solved just like it was in the hash table
+by adding a "keyvalue" section to the node and adding multiple nodes for each
+event. Another concern I had with this data structure is the height of the tree.
+In my list of events I have 79 events, and when put into the tree I have a tree
+with height 13. However in a balanced tree, 79 events would make a complete tree
+with maximum height of 7 (one node less and it would be a height of 6). This
+may not seem like much of a difference, however the number of nodes grows
+exponentially with the tree's height (nodes = 2^height-1). Because of this, a
+balanced tree of height 13 would hold 8191 nodes, rather than 79. This means 
+that our tree has more nodes in a linear linked list than it should. With 79 
+events this doesn't make much of a difference, however if this trend continues,
+our tree's performance could suffer greatly and search times could be only 
+slightly lower than those seen in a linear linked list. This data structure is
+not good then for directly inserting events. Events should be sorted before hand
+and inserted into the tree in such a way that it makes a balanced tree.
+    I believe that the BST data structure would work for holding events,
+however only under certain conditions. If the events were entered with another
+data structure, maybe a two-three tree or a hash table, then the events were
+sorted and inserted into the BST by spliting the sorted events in half every
+insertion. This would prevent our tree from becoming unbalanced, and would give
+us the performance and limited memory use of the BST. I would also be interested
+in using a BST in a hash table, where instead of the chains being a LLL, each
+chain would be a BST class. This would be an interesting experiment. If the hash
+table was similar to a dictionary, where chains are very short, this probably
+wouldn't make a difference. However if it's a hash table with very long chains,
+we could reduce the time it takes to search the hash table's chains.
+    In this data structure, we can quickly search for events and insert events.
+This is efficient because theoretically we can split our search time in half
+every time we go to a new node. I believe we could increase this search time
+by adding an unsigned integer hash value to each node. Then we can compare
+this hash value to the one we're looking for as we traverse the tree. This
+wouldn't be used like we use hash values in a hash table, but rather it would
+be used to quickly compare events to our target event. Integer comparisons are
+much quicker than calling strcmp() and going through each byte in a character
+string. We could compare this hash value, then if it matches we could test the
+character string in the node. This would dramatically decrease the amount of 
+time it takes to test each node, but would still give us the accuracy of 
+comparing each byte in character string. This would add 4 bytes to each node,
+however the reduced comparison times would be worth it I believe.
+    Had I had more time I would create a larger sample size of events. It's very
+hard to tell how well our choices might impact performance while only using 79
+events. While we can look at the number of clock cycles, we won't have an idea
+if something is really worth it unless we have larger data sizes. I would 
+definitely implement a 2-3 tree as well, and compare the two to see how they
+perform. A 2-3 tree would always remain balanced, no matter what order the data
+is entered. I would also like to implement a function (probably in the 
+application program) to sort the data and enter the events into the tree in 
+such a way where we can make a balanced tree.
+

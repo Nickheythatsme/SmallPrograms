@@ -1,0 +1,40 @@
+Nicholas Grout
+Program 4
+
+    In this program we try to organize various car features using object oriented designs. We used Java in this program,
+my first time using Java for a programming assignment. For each feature, we need to be able to track and manage various
+aspects. For example, the Wheels feature needs to hold the rim size and the style. All features have aspects in common
+however, such as the name, description, cost, and priority. This means that, in order to reuse code, we have all
+features extend a base features class which holds and maintains this common data. This feature base is also abstract,
+since we don't want to create an object of just a blank feature.
+    Each specified feature class is implemented in a simiar way, the only difference being the type and amount of data
+they hold. For example, engines have two doubles for horse power and MPG, while color only has a string for the "mood".
+Each of these features then are distinct enough to be their own class, but similar enough that they can derive from
+the same base class. At the end of this hierarchy I have a node class, which has a "has a" relationship with the
+features. It simply has a pointer to a featureBase, and from there we can dynamically bind this to features further down
+the hierarchy. If I were to do this again, I might put the node class right after the base class, then derive all
+specific features from the node class. This would enable me to use all the node functionality, but would also reduce
+the need for surplus code such as compare and display.
+    I go through several steps in order to load features into my program. I think I'm doing the most efficient way, or
+close to it at least. I load all features into a featureBase pointer, then add this to my node Array. The node array can
+then compare the class name of the object and determine which array index it should go into. This is a very very easy
+way to do some RTTI, where I just compare the strings of different class names to each other. It works however, and
+we don't have a ridiculous amount of features.
+    If I had more time, I would probably extend my hierarchy. Instead of just having "engines", what if we had "sport"
+engines, which have all their own sub classes and features. This would make sense if we had a lot of one type, because
+some engines cannot be compared in the same way. What if one engine had a fast fuel injector or a hood scoop? We
+wouldn't want all engines to show if they have a hood scoop or not, but we would want it to be a searchable feature for
+engines. A similar problem arises with colors. What if we wanted different colored trim, but not different colored body
+paint. We wouldn't want to list all the combinations of body paint to trim, we'd just want to extend the colors class
+to a trimColor class, where we could then specify what it looks like and how it behaves with other colors. This would
+be a very interesting extension of this project. I would probably make several NodeArrays, and update the way they do RTTI,
+then I would make an array of Node arrays. This final node array would represent all features, in a general sense
+(engines, wheels, etc) then each index in this array would contain more specilized features
+(Sport tires, off road tires, etc). This would enable the user to make more specific requests for the features they want.
+Rather than comparing sport tires to off road tires, they could compare specific models of off road tires to other off
+road tires.
+    Another extension of this project I would like to implement would be a search tree for products. In fact I would
+make several search trees for each aspect of the feature base class. For example, I would make a tree for all features
+based on their price. This would allow the user to show which features are in their price rance. Then I would make a
+search tree for the names. This would allow the user to search for a specific feature, without having to scroll through
+or specify what type of feature it is.

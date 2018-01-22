@@ -1,0 +1,20 @@
+Nicholas Grout
+Program 5
+
+    On program 4 and program 5 I used an IDE for java, rather than using vim and 
+console line compiling/running. This was a big change for me, as I had never
+really used an IDE. I found it was much quicker to use the IDE however, and I 
+was amazed at some of the tips/errors the IDE can inform me about. I think this
+helped me learn more quickly about java syntax/compiling.
+    I really appreciate the VIM plugin. I find I work so much more quickly when
+I can use VIM commands. I did however find the workspace configuration lacking.
+With VIM I can configure the windows any way I want (vsplits, tabs, horozontil
+splits), then save this configuration for different parts of my project. If I
+need to work on cars/car nodes, it is useful to have a workspace specifically
+for that.
+    One thing I also really appreciated was the debugging aspect of the IDE. I
+was able to pinpoint easily where my program seg faulted, or where stack 
+overflows might be happening. Java is also an very easy language to use in
+this regard.
+
+

@@ -1,0 +1,6 @@
+Retriever,1
+Labrador,1
+Poodle,0
+Australian Shepard,1
+beagle,1
+Golden Retriever,0

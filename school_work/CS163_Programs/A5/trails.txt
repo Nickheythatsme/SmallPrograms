@@ -1,0 +1,56 @@
+Wildwood Trail @ Newberry Rd,1
+Firelane 15 @ NW Skyline Blvd,1
+Firelane 15 @ Wildwood trail,0
+BPA Rd @ NW Skyline Blvd,1
+BPA Rd @ Wildwood trail,0
+Firelane 15 @ Firelane 12,0
+BPA Rd @ Firelane 12,0
+BPA Rd @ Firelane 13,0
+BPA Rd @ Newton Rd,1
+Newton Rd @ NW Skyline Blvd,1
+Newton Rd @ Wildwood Trail,0
+Newton Rd @ Firelane 10,0
+Firelane 10 @ Wildwood Trail,0
+Firelane 10 @ Linnton Trail,0
+Linnton Trail @ NW St. Helens Rd,1
+Wildwood Trail @ NW Germantown Rd,1
+Firelane 10 @ NW Germantown Rd,1
+Firelane 9  @ NW Germantown Rd,1
+Wildwood Trail @ Cannon Trail,0
+Leif Erikson @ NW Germantown Rd,1
+Leif Erikson @ Cannon Trail,0
+Waterline Trail @ NW Skyline Blvd,1
+Waterline Trail @ Wildwood Trail,0
+Waterline Trail @ Leif Erikson,0
+Tolinda Trail @ Leif Erikson,0
+Tolinda Trail @ NW Germantown Rd,1
+Leif Erikson @ Waterline Trail,0
+Leif Erikson @ Springville Rd,0
+Wildwood Trail @ Springville Rd,0
+Springville Rd @ NW Skyline Blvd,1
+Springville Rd @ Trillium Trail,0
+Springville Rd @ Hardesty Trail,1
+Wildwood Trail @ Hardesty Trail,0
+Leif Erikson @ Hardesty Trail,0
+Wildwood Trail @ Ridge Trail,0
+Firelane 7 @ Springville Rd,1
+Firelane 7 @ Ridge Trail,0
+Leif Erikson @ Ridge Trail,0
+Ridge Trail @ NW St. Helens Rd,1
+Wildwood trail @ Gas Line Rd,0
+Wildwood trail @ Trillium Trail,0
+Firelane 7 @ Oil Line Rd,0
+Wildwood trail @ Oil Line Rd,0
+Wildwood @ Wiregate,0
+Wiregate @ Leif Erikson,0
+Firelane 5 @ NW Skyline Blvd,1
+Firelane 5 @ Wildwood Trail,0
+Leif Erikson @ Maple Trail,0
+Wildwood Trail @ Maple Trail,0
+Saltzman Rd @ NW Skyline Blvd,1
+Saltzman Rd @ Wildwood Trail,0
+Saltzman Rd @ Leif Erikson,0
+test1,1
+test2,0
+test3,1
+test4,0

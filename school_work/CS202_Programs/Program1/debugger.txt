@@ -1,0 +1,25 @@
+Nicholas Grout
+Program 1 Review
+
+
+    I used the debugger a lot in this program. I used to use it only when I got
+seg faults, however in this program I used it to make sure the right 
+constructors were beign called. This was my first OOP program, and the first one
+with heiarchical structure, so being able to see my code run in gdb helped a 
+ton. I learned a lot about how certain classes are constructed, and how to 
+create them. For example, I was having a lot of trouble with the DLL, all of my
+classes would be converted into the furthest base class, celestial_body. This
+meant I was losing information that inner/outer planets needed. I looked up the 
+source file in GDB and set break points, then looked at the back trace to see
+which constructors were being called and why. I realized I had a function in my
+node class which went:
+    bool insert(node * obj)
+    {
+        node * new_node = new node(obj);
+        ...
+    }
+    This meant that whatever class pointer was sent to this program, whether
+it was an inner planet or outer planet, would be converted into a node class
+and would lose information. I figured out that I should make another insert
+function in my derived class, then make the desired new object in that derived
+class and send it to the node insert. 

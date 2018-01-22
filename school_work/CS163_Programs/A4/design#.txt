@@ -1,0 +1,86 @@
+Nicholas Grout
+Assignment 4 design
+Professor Karla Fant
+
+1) What functions your ADT will need to have
+2) How each function will report success/failure back to the calling routine
+3) How each function will shield the client program from the details of the 
+    data structure
+4) What data structures you will be using and how each of the special cases. 
+    Consider drawing pointer diagrams with .before. and .after. diagrams for 
+    each special case.
+
+    In this program we will manage event data in a binary search tree. The 
+events will be sorted by the event name, where events with names closer to 'A' 
+are ranked higher (right) and events with names closer to 'Z' are ranked lower
+(left).
+    Since the main ADT for this program is the binary search tree, we will need
+the following public functions:
+    
+    Constructor/Destructor 
+        - Nodes in a tree will not be deleted by themselves so we'll need to 
+          make sure they're all removed.
+    Insert
+        - Our ADT must allow for insertion of events. These events will be 
+          copied to new nodes, then sorted into the tree by the event name.
+          Returns 1 for success or -1 for failure.
+    Remove all (event name)
+        - We need to allow an event to be removed based on a matching name. We
+          Will do this by traversing the tree, using the searching name as our
+          value we compare to other event's names. When we reach on that matches
+          out node, we delete it.
+    Remove all (event keyword)
+        - We will need to allow for removing all events with a matching keyword.
+          This will be done by going through each event, comparing our keyword
+          to the event's keywords. If they keywords match then we will delete
+          that node.
+    Retrieve (event name)
+        - We will need to allow the application program to pull all information
+          on an event by entering the target event's name. We will do this by
+          getting a name to search for, and an empty event node. When we find
+          the target event (searching the same way we did for remove all) we
+          will need to copy that event's data to the new event node and return
+          success. Otherwise return failure.
+    Display All (sorted alphabetically)
+        - We will need to be able to display all events. To do this we will
+          start at the far left leaf of our tree, then traverse right, 
+          displaying as we go. By the nature of a BST this will show the events
+          in sorted order.
+    Return height
+        - This function isn't required but will give us an evaluation of our 
+          tree's performance, and will be useful while debugging. It will be
+          useful to know if all our events are going into an LLL when they're
+          not supposed to!
+
+    To support these public functions and reuse code, we will need the following
+private functions:
+    Insert Recursive
+        - The wrapper function will give us a node with an event which we will
+          need to insert. This function will traverse the tree recursively until
+          it finds a leaf of the right value, then append the new node onto this
+          leaf.
+    Search Recursive
+        - The Remove all (event name), Retrieve (event name), and maybe even 
+          Remove all (event keyword) can all use the same search function. This
+          function will return the pointer to the desired node, or a 0 if the
+          desired node is not found.
+    Display All Recursive
+        - This function will just be called by the wrapper to display all nodes.
+    Several other recursive functions for return height, remove all, and the 
+    destructor that are similar to the ones above.
+
+    All functions will report success to the application program through their
+function return values. For example, the insert event function will return 1 if
+the insertion was successful, or will return a 0 if it failed. Some of the
+functions like Display All will report success and display a message to the 
+user.
+
+Some things to consider with this design are:
+1)Improperly formatted data. I learned from the last program that it is
+  very difficult to get people to format data correctly, so we'll have to
+  report failure if the data is improperly formatted, rather than segfaulting
+  by performing a strlen() or something else on a null-less char pointer.
+2)Variable number of keywords. Some events have 1, some have up to 5. When
+  we compare the event keywords to a target keyword we'll just need to watch
+  out for this and not assume that each is there.
+

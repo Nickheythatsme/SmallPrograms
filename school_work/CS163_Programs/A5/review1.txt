@@ -1,0 +1,47 @@
+//
+Nicholas Grout
+Assignment 5
+
+1) How well did the data structure selected perform for the assigned application? 
+2) Would a different data structure work better? If so, which one and why
+3) What was efficient about your design and use of the data structure?
+4) What was not efficient?
+5) What would you do differently if you had more time to solve the problem?
+//
+
+    The data structure selected performed very well for this assignment. The
+trail heads and intersections were able to be tracked easily and effectively.
+The trail heads and intersections were kept as verticies, and the trails between
+these vertecies were kept as edges. I wish I had more time to make a detailed
+graph, with all verticies and edges input into the file. Unfortunately I only
+had enough time for the vertecies and intersections, and the rest of the edges
+need to be put in manually.
+    I believe a graph is the best data structure for this application. The
+performance of this data structure isn't great for many edges and many 
+verticies, but when trying to keep the data for a whole map straight, a graph
+helps this immensely.
+    My design was efficient because it used minimal pointers and variables when
+storing edges and verticies. The data was not repeated, save for the trail name
+in the edges. The rest of the data however was not repeated and was simply
+referred to by a pointer. This means that instead of having many different
+arrays of characters and many different boolean pointers, we just have one 
+pointer to the desired data, and from that we can access the original data.
+    There were many ways to make my graph more efficient. One way would be 
+merging a closed hash table with open addressing. This would allow our graph
+to jump right to a vertex, or very close to a vertex. This hash table works by
+using a hash function based on some key value to jump to an index array, however
+it handles collisions by simply moving down until it finds an open space, then
+inserting the new vertex at that spot. This would work for our program because 
+we know exactly how many vertecies there are, so we wouldn't have to worry about
+resizing the hash table array.
+    If I had more time, I would definitely implement the closed hash table
+method. This would drastically decrease the time it takes to find a vertex,
+and would have no impact on the tables flexibility (for this program). I would
+also work on making edges that can be loaded into the table from a file. This 
+way we could build a large, complex map of all the trails in the park, and 
+really flex our table's abilities.
+    I would also like to add more to the edge information and vertex 
+information. For each vertex I would like to have paths be easily accessible.
+For example, a user should be able to view all the vertex on wildwood trail.
+This would be possible if the trail name was added to the edge. This would also
+allow the user to see which paths were dog/bike/walking/etc accessible.

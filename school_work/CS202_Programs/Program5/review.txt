@@ -1,0 +1,39 @@
+Nicholas Grout
+Program 5
+
+    This project was an extension of Program 4, which simply displayed features
+for cars. This program takes it two steps further by creating a car full of
+features, and car lots, full of cars.
+    Each car has one of each type of feature. Each car holds these features in a 
+LLL, sorted by the highest priority to lowest priority. This allows each car
+to quickly display and compare features. Since we only have a couple features,
+we probably only need an LLL rather than a BST or something similar. Each car
+also calculates the total cost and total priority. This allows us to easily
+compare cars for cost and features.
+    We also implemented a car lot, which has many indiviual cars. The cars are
+organized in the lot by a BST data structure. Each car is organized based on its
+priority, thus giving us an efficient way to sort and find cars. There are also
+several lots in our program, which are organized again in a BST based on the lot
+name. This again just allows for easy display and finding of lots.
+    The lots are all loaded from a file, just like how all the features are 
+loaded from a file. All cars are simply loaded by feature name. This is because
+all features are first loaded, then the user adds priority to various features,
+then these features are loaded into the cars. This allows us to assign priority
+to cars without going through after all cars are loaded. This is mainly for
+efficiency, but also because I didn't have enough time to implement a search/
+assign/change class to change all the features in every car. I think the way
+it was implemented was fine though.
+    I'm happy with the way the program turned out. However I would have liked to
+add a couple more features. I would have liked to add names to each car 
+(I didn't have time for this), that way we could display cars more easily.
+Having names on cars also means we can search for and select cars. I would have
+liked to sort Car Lots by relevance (Number of relevant cars on the lot). 
+I think it would also be cool to have a saved list of cars. That way the user
+can search for and add cars to their list, and make a more educated decision
+from a list of their favorites. I would have liked to add more features as well,
+or maybe even a way to modularly add features. This would be much more complex
+but would be a really neat way to sort and manage cars. Imagine a car lot owner
+who can add new features to the data base without needing to hire a computer
+programmer. If a new car on the lot was self driving, the owner could simply add
+a new feature to the program (saved in another feature-type file), then this
+feature would be added to the program.

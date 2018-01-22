@@ -1,0 +1,11 @@
+Graduation,PSU,1400|cool,neat,finally,PSU,Portland,Computer Science|This is an achievement!,Remember to wear your gown!,So proud|Haley Carlson,503-555-1234&Nick Grout,5039566343&
+cool,neat,finally,PSU,Portland,Computer Science,
+Finishing Program 3,PSU,14000|finally,23tree,balanced,tree|holy cow that was hard,Can I have a job now?|Haley Carlson,503-555-1234&Nick Grout,5039566343
+finally,23tree,balanced,tree,
+Solar Eclipse,Sisters OR,12000|Sisters,sun,moon,eyes|Bring your eclipse sunglasses!, I'm not a hug fan of the eclipse IDE.|Haley Carlson,503-555-1234&Nick Grout,5039566343&
+Sisters,sun,moon,eyes,
+Finishing CS202,PSU,12000|C++,Java,Karla Fant,PSU,operator overloading|This class was hard but I'm so glad I did it!, awesome job!|Haley Carlson,503-555-1234&Nick Grout,5039566343&
+C++,Java,Karla Fant,PSU,operator overloading,
+Movie in the park,Laurelhurst Park,13000|Park,pond,Shark Tale, Cars 3,movies|This is a great place to watch a movie!, I love this place!|Haley Carlson,503-555-1234&Nick Grout,5039566343&
+Park,pond,Shark Tale,Cars 3,movies,
+
