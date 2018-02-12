@@ -29,6 +29,11 @@ auto ReadClues(char *fname)
 
 int main(int argc, char **argv)
 {
+    if( argc != 2 )
+    {
+        cout << "Usage: ./crossword [clues.csv file]" << endl;
+        exit(EXIT_FAILURE);
+    }
     auto clues = ReadClues(argv[1]);
     Crossword crossword(clues);
 
