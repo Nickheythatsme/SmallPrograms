@@ -1,10 +1,6 @@
 account_info.py
+*.o
 a.out
-graph.o
-main.o
-vertex_edge.o
 graph
 Session.vim
-out
 .DS_Store
-
