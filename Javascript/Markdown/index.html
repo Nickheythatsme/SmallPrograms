@@ -6,30 +6,23 @@
     .textbox{
         width:500px;
         height:200px;
+        margin:5px 0 5px 0;
         border-style:solid;
-        margin:1em 0 0 0;
         border-width:5px;
         border-color:black;
-        padding:0;
-    }
-    #input{
-        width:inherit;
-        height:inherit;
         padding:10px;
         word-wrap: break-word;
         word-break: break-all;
-    }
-    #output{
+        resize:none;
     }
 </style>
 <body>
-    <h1>Test!</h1>
-    <div class="textbox">
-        <textarea id="input" type="text" name="input"></textarea>
-    </div>
+    <h1>Test Markdown</h1>
+    <textarea class="textbox" id="input" type="text" name="input"></textarea>
     <br>
-    <div class="textbox" id="output">
-        <textarea id="input" readonly="true">this is a test</textarea>
-    </div>
+    <button onclick="markdown()">Markdown</button>
+    <br>
+    <textarea class="textbox" id="output" readonly="true">this is a test</textarea>
 </body>
+<script src="index.js"></script>
 </html>
