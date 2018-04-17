@@ -5,7 +5,7 @@
 <style>
     .textbox{
         width:500px;
-        height:200px;
+        min-height:200px;
         margin:5px 0 5px 0;
         border-style:solid;
         border-width:5px;
@@ -18,11 +18,13 @@
 </style>
 <body>
     <h1>Test Markdown</h1>
-    <textarea class="textbox" id="input" type="text" name="input"></textarea>
+    <textarea class="textbox" id="input" type="text" name="input">### Input</textarea>
     <br>
     <button onclick="markdown()">Markdown</button>
     <br>
-    <textarea class="textbox" id="output" readonly="true">this is a test</textarea>
+    <div class="textbox" id="output" readonly="true">
+        <h1>Output</h1>
+    </div>
 </body>
-<script src="index.js"></script>
+    <script type="text/javascript" src="markdown.js"></script>
 </html>
