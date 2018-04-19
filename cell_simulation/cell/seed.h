@@ -1,3 +1,4 @@
+#include <ctime>
 #include <iostream>
 #include <random>
 #include <cstring>
@@ -13,6 +14,7 @@ class char_seed
     public:
         char_seed();
         char_seed(char *s);
+        char_seed(unsigned int s);
         char_seed(const char_seed &obj);
         char_seed(char_seed &&rhs);
         std::ostream& display(std::ostream &out) const;
@@ -22,9 +24,11 @@ class char_seed
         char_seed& operator=(char_seed &&rhs);
         char_seed& operator=(const char_seed &rhs);
 
+        int mutate();
+
         /* Static functions */
         static char* make_random_seed();
-        static char* make_seed(char *text);
+        static char* make_seed(unsigned int);
     protected:
         char_seed cross(const char_seed &rhs) const;
         static std::normal_distribution<> normal_dist;
