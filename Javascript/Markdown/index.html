@@ -15,6 +15,9 @@
         word-break: break-all;
         resize:none;
     }
+    #markdown_output{
+        padding:0 1em 0 1em;
+    }
 </style>
 <body>
     <h1>Test Markdown</h1>
@@ -22,7 +25,14 @@
     <br>
     <button onclick="markdown()">Markdown</button>
     <br>
-    <textarea class="textbox" id="output" readonly="true">this is a test</textarea>
+    <div>
+        <p>Markdown Output</p>
+        <div class="textbox" id="markdown_output"></div>
+    </div>
+    <div>
+        <p>Raw output</p>
+        <textarea class="textbox" id="raw_output" readonly="true">this is a test</textarea>
+    </div>
 </body>
 <script src="index.js"></script>
 </html>
