@@ -3,9 +3,19 @@
     <meta charset="utf-8">
 </head>
 <style>
+    #output h1 {
+        margin: 0 0 .25em 0;
+        border-bottom: 2px solid black;
+    }
+    #output h2 {
+        margin: 0 0 .10em 0;
+    }
+    #output h3 {
+        margin: 0 0 0 0;
+    }
     .textbox{
         width:500px;
-        height:200px;
+        min-height:200px;
         margin:5px 0 5px 0;
         border-style:solid;
         border-width:5px;
@@ -21,10 +31,14 @@
 </style>
 <body>
     <h1>Test Markdown</h1>
-    <textarea class="textbox" id="input" type="text" name="input"></textarea>
+    <textarea 
+        class="textbox" 
+        id="input" 
+        type="text" 
+        name="input" 
+        oninput="doMarkdown()">### Markdown</textarea>
     <br>
-    <button onclick="markdown()">Markdown</button>
-    <br>
+<<<<<<< HEAD
     <div>
         <p>Markdown Output</p>
         <div class="textbox" id="markdown_output"></div>
@@ -32,7 +46,12 @@
     <div>
         <p>Raw output</p>
         <textarea class="textbox" id="raw_output" readonly="true">this is a test</textarea>
+=======
+    <div class="textbox" id="output" readonly="true">
+        <h1>Markdown</h1>
+>>>>>>> 0164c0b2138925b133adff3d1cc1a978b8f239ec
     </div>
 </body>
-<script src="index.js"></script>
+<script type="application/javascript" src="markdown.js"></script>
+<script type="application/javascript" src="index.js"></script>
 </html>
