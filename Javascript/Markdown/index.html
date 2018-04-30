@@ -25,6 +25,9 @@
         word-break: break-all;
         resize:none;
     }
+    #markdown_output{
+        padding:0 1em 0 1em;
+    }
 </style>
 <body>
     <h1>Test Markdown</h1>
@@ -35,8 +38,18 @@
         name="input" 
         oninput="doMarkdown()">### Markdown</textarea>
     <br>
+<<<<<<< HEAD
+    <div>
+        <p>Markdown Output</p>
+        <div class="textbox" id="markdown_output"></div>
+    </div>
+    <div>
+        <p>Raw output</p>
+        <textarea class="textbox" id="raw_output" readonly="true">this is a test</textarea>
+=======
     <div class="textbox" id="output" readonly="true">
         <h1>Markdown</h1>
+>>>>>>> 0164c0b2138925b133adff3d1cc1a978b8f239ec
     </div>
 </body>
 <script type="application/javascript" src="markdown.js"></script>
