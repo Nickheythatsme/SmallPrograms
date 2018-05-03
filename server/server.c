@@ -14,7 +14,14 @@ int main(int argc, char const *argv[])
     int opt = 1;
     int addrlen = sizeof(address);
     char buffer[1024] = {0};
-    char *hello = "Hello from server";
+    char *mess = "\
+HTTP/1.1 200 OK\n\
+Content-Type: text/html; charset=utf-8\n\
+Connection: close\n\
+Content-Length: 89\n\
+\n\
+<!DOCTYPE html>\n\
+<html><head><title>page 1</title></head><body>Hello World!</body></html>";
       
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
@@ -34,7 +41,6 @@ int main(int argc, char const *argv[])
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons( PORT );
       
-    printf("Attempting to bind to socket\n");
     // Forcefully attaching socket to the port 8080
     if (bind(server_fd, (struct sockaddr *)&address, 
                                  sizeof(address))<0)
@@ -42,7 +48,6 @@ int main(int argc, char const *argv[])
         perror("bind failed");
         exit(EXIT_FAILURE);
     }
-    printf("Listening at port: %u\n", PORT);
     if (listen(server_fd, 3) < 0)
     {
         perror("listen");
@@ -55,9 +60,9 @@ int main(int argc, char const *argv[])
         exit(EXIT_FAILURE);
     }
 
-    valread = read( new_socket , buffer, 1024);
-    printf("%s\n",buffer );
-    send(new_socket , hello , strlen(hello) , 0 );
-    printf("Hello message sent\n");
+    valread = read(new_socket , buffer, 1024);
+    printf("%s\n",buffer);
+    send(new_socket , mess, strlen(mess) , 0 );
+    printf("Message sent: %s\n", mess);
     return 0;
 }
