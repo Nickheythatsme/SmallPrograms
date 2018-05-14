@@ -52,11 +52,9 @@ def make_df(data):
     return df
 
 def convert_type(df, col, func):
-    for i,d in enumerate(df.loc[col]):
-        df.loc[col][i]= func(d)
+    for row in df.iterrows():
+        row[1][col] = func(row[1][col])
     return df
-
-
 
 def get_data(filename):
     contents = load_contents(filename)
