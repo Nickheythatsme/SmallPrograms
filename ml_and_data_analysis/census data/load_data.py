@@ -47,16 +47,25 @@ def clean_contents(lines):
 
 # Make a pandas data field from data
 def make_df(data):
-    return pd.DataFrame(data, columns=headers)
+    df = pd.DataFrame(data, columns=headers)
+    df = convert_type(df, "age", int)
+    return df
 
-def clean_df(df):
-    map(int, df["education-num"])
+def convert_type(df, col, func):
+    for i,d in enumerate(df.loc[col]):
+        df.loc[col][i]= func(d)
+    return df
+
+
 
 def get_data(filename):
     contents = load_contents(filename)
     contents = clean_contents(contents)
-    return clean_df(make_df(contents))
+    return make_df(contents)
 
-adult_data = get_data('adult.data.csv')
-adult_test = get_data('adult.test.csv')
+adult_data = get_data('./adult.data.csv')
+adult_test = get_data('./adult.test.csv')
 
+if __name__ == "__main__":
+    print( "Adult data head:\n{}".format(adult_data.head()))
+    print(type(adult_data["age"][0]))
