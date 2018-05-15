@@ -1,3 +1,4 @@
+
 # Set all the values in an array to 0
     .global zero_array
     .text
@@ -5,11 +6,11 @@ zero_array:
     xorq    %rdx, %rdx
 .L1:
     cmpq    %rsi, %rdx
-    jge end
+    jge .L2
     movl    $0, (%rdi, %rdx, 4)
     inc     %rdx
     jmp     .L1
-.l2:
+.L2:
     ret
 
 
@@ -37,15 +38,28 @@ end:
     ret
 
 
+/*
+TODO this function causes a seg fault after printf is called
+*/
     .global copy
     .text
 copy:
-    sar     $2, %rsi                 # Multiply len by 4 to get number of bytes
-    mov     %rdi, %rcx
-    mov     %rsi, %rdi
-    call    malloc
-    mov     %rax, %rdi
-    sal     $2, %rsi
-    call    zero_array
+	pushq	%rbp
+	mov 	%rsp, %rbp
+	sub 	$8, %rsp
+    mov     %rdi, -8(%rbp)          # Save pointer to src array
+    mov     %rsi, %rdi              # Move length into rdi
+    sal     $2, %rdi                # Multiply by 4 to get number of bytes
+    call    malloc                  # Call malloc and allocate new array
+    mov     -8(%rbp), %rdi          # Move pointer to src array back to rdi
+    xorq    %rbx, %rbx              # i=0
+copy_loop:
+    cmpq    %rsi, %rbx              # Compare i:len
+    jge     copy_end
+    mov     (%rdi, %rbx, 4), %r9    # temp=src[i]
+    mov     %r9, (%rax, %rbx, 4)    # dest[i]=temp
+    inc     %rbx                    # ++i
+    jmp     copy_loop
+copy_end:
+    leave
     ret
-

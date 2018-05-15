@@ -7,12 +7,12 @@
 /* 
  * Assembly Functions 
  */
-/* Reverse the order of an array */
+/* Zero all values in an array */
 void zero_array(int *array, size_t len);
+/* Reverse the order of an array */
 void reverse(int *array, size_t len);
 /* Copy an array. Return new array */
 int* copy(int *src, size_t len);
-
 
 /*
  * Non assembly functions 
@@ -33,7 +33,9 @@ int main(int argc, char *argv[])
 
     /* Call assembly functions */
     dest = copy(array, ARRAY_SIZE);
+    printf("Address of dest: 0x%x\n", dest);
     display_array(dest, ARRAY_SIZE);
+    free(array);
 
     /*
     zero_array(array, ARRAY_SIZE);
