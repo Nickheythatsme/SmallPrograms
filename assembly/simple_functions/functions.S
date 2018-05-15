@@ -39,7 +39,9 @@ end:
 
 
 /*
-TODO this function causes a seg fault after printf is called
+    Copy the contents of an array. 
+    Takes pointer to int array, unsigned long length of the array
+    Returns a pointer to the array
 */
     .global copy
     .text
@@ -55,16 +57,19 @@ copy:
     mov     -8(%rbp), %rdi          # Move pointer to src array back to rdi
     mov     -16(%rbp), %rsi         # Move array len back to rsi
     xorq    %rbx, %rbx              # i=0
-copy_loop:
+.copy_loop:
     cmpq    %rsi, %rbx              # Compare i:len
-    jge     copy_end
+    jge     .copy_end
     movl    (%rdi, %rbx, 4), %r9d   # temp=src[i]
     movl    %r9d, (%rax, %rbx, 4)   # dest[i]=temp
     inc     %rbx                    # ++i
-    jmp     copy_loop
-copy_end:
+    jmp     .copy_loop
+.copy_end:
     xorq    %rdi, %rdi
     xorq    %rsi, %rsi
     addq    $16, %rsp
     popq    %rbp
     ret
+
+
+

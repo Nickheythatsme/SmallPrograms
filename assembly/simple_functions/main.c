@@ -13,6 +13,8 @@ void zero_array(int *array, size_t len);
 void reverse(int *array, size_t len);
 /* Copy an array. Return new array */
 int* copy(int *src, size_t len);
+/* Find the sum of all indicies of a square multidimensional array */
+long sum_multi_dimension(int **matrix, int len);
 
 /*
  * Non assembly functions 
