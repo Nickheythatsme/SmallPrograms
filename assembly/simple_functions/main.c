@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #define ITERATIONS 10000
-#define ARRAY_SIZE 10
+#define ARRAY_SIZE 100000
 
 /* 
  * Assembly Functions 
@@ -31,16 +31,12 @@ int main(int argc, char *argv[])
         array[i] = i;
     }
 
-    /* Call assembly functions */
-    dest = copy(array, ARRAY_SIZE);
-    printf("Address of dest: 0x%x\n", dest);
-    display_array(dest, ARRAY_SIZE);
-    free(array);
-
-    /*
-    zero_array(array, ARRAY_SIZE);
-    display_array(array, ARRAY_SIZE);
-    */
+    for (i=0; i<ITERATIONS; ++i)
+    {
+        /* Call assembly functions */
+        dest = copy(array, ARRAY_SIZE);
+        free(dest);
+    }
 
     return 0;
 }

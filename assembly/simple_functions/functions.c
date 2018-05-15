@@ -30,12 +30,10 @@ void reverse(int *array, size_t len)
 int* copy(int *src, size_t len)
 {
     int *dest = (int*) malloc(sizeof(int) * len);
-    /*
     int i;
     for (i=0; i<len; ++i)
     {
         dest[i] = src[i];
     }
-    */
     return dest;
 }

@@ -46,20 +46,25 @@ TODO this function causes a seg fault after printf is called
 copy:
 	pushq	%rbp
 	mov 	%rsp, %rbp
-	sub 	$8, %rsp
+	sub 	$16, %rsp
     mov     %rdi, -8(%rbp)          # Save pointer to src array
+    mov     %rsi, -16(%rbp)         # Save len of array
     mov     %rsi, %rdi              # Move length into rdi
     sal     $2, %rdi                # Multiply by 4 to get number of bytes
     call    malloc                  # Call malloc and allocate new array
     mov     -8(%rbp), %rdi          # Move pointer to src array back to rdi
+    mov     -16(%rbp), %rsi         # Move array len back to rsi
     xorq    %rbx, %rbx              # i=0
 copy_loop:
     cmpq    %rsi, %rbx              # Compare i:len
     jge     copy_end
-    mov     (%rdi, %rbx, 4), %r9    # temp=src[i]
-    mov     %r9, (%rax, %rbx, 4)    # dest[i]=temp
+    movl    (%rdi, %rbx, 4), %r9d   # temp=src[i]
+    movl    %r9d, (%rax, %rbx, 4)   # dest[i]=temp
     inc     %rbx                    # ++i
     jmp     copy_loop
 copy_end:
-    leave
+    xorq    %rdi, %rdi
+    xorq    %rsi, %rsi
+    addq    $16, %rsp
+    popq    %rbp
     ret
