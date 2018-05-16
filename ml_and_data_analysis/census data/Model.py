@@ -45,7 +45,8 @@ predict_test_input_fn = tf.estimator.inputs.pandas_input_fn(
 feature_cols = [
     # Education 
     tf.feature_column.numeric_column(key="education-num", dtype=tf.uint16),
-    tf.feature_column.numeric_column(key="income", dtype=tf.uint8)
+    tf.feature_column.numeric_column(key="income", dtype=tf.bool),
+    tf.feature_column.numeric_column(key="age", dtype=tf.uint16)
 ]
 
 
@@ -62,15 +63,4 @@ estimator = tf.estimator.DNNClassifier(
 # Training for 1,000 steps means 128,000 training examples with the default
 # batch size. This is roughly equivalent to 5 epochs since the training dataset
 # contains 25,000 examples.
-estimator.train(input_fn=train_input_fn, steps=1000);
-
-
-# In[25]:
-
-
-# Add ops to save and restore all the variables.
-saver = tf.train.Saver()
-
-# Save the variables to disk.
-save_path = saver.save(tf.Session(), "./model.ckpt")
-
+estimator.train(input_fn=train_input_fn, steps=1000)
