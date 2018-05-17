@@ -4,77 +4,47 @@ import csv
 
 # Headers for data
 headers = [
-    "age",
+    "num_age",
     "workclass",
     "fnlwgt",
     "education",
-    "education-num",
+    "num_education",
     "marital-status",
     "occupation",
     "relationship",
     "race",
-    "Female",
-    "capital-gain",
-    "capital-loss",
-    "hours-per-week",
+    "num_Female",
+    "num_capital-gain",
+    "num_capital-loss",
+    "num_hours-per-week",
     "native-country",
     "income"]
 
-# Load the contents of the csv file into a list
-def load_contents(filename):
-    lines = []
-    with open('adult.test.csv','r') as fin:
-        creader = csv.reader(fin)
-        for line in creader:
-            lines.append(line)
-    return lines
+def income_test(x):
+    if x == ' >50K.':
+        return 1
+    else:
+        return 0
 
-# Remove any empty lines, make income true/false
-def clean_contents(lines):
-    # Remove the first row
-    lines.pop(0)
+def is_female(x):
+    if x == ' Female':
+        return 1
+    else:
+        return 0
 
-    # Remove any rows with no data (last row)
-    for i,line in enumerate(lines):
-        if len(line) == 0:
-            lines.pop(i)
+# Training data
+adult_train = pd.read_csv('./adult.data.csv', names=headers)
+adult_train = adult_train.drop(adult_train.index[[0,1]])
+adult_train["income"] = adult_train["income"].apply(income_test)
+adult_train["num_Female"] = adult_train["num_Female"].apply(is_female)
 
-    # Change income to less than or equal to 50K (True/false)
-    for line in lines:
-        # Change age to int
-        line[0] = int(line[0])
+# Testing data
+adult_test = pd.read_csv('./adult.test.csv', names=headers)
+adult_test = adult_test.drop(adult_test.index[[0,1]])
+adult_test["income"] = adult_test["income"].apply(income_test)
+adult_test["num_Female"] = adult_test["num_Female"].apply(is_female)
 
-        # Change education-num to int
-        line[4] = int(line[4])
-
-        # Change sex to Female true/false
-        line[9] = line[9] == ' Female'
-
-        # Change capital gain/loss
-        line[10] = int(line[10])
-        line[11] = int(line[11])
-
-        # Change number of hours per week to int
-        line[12] = int(line[12])
-
-        # Change income to True/false
-        line[14] = line[14] == ' <=50K.'
-    return lines
-
-# Make a pandas data field from data
-def make_df(data):
-    df = pd.DataFrame(data, columns=headers)
-    return df
-
-def get_data(filename):
-    contents = load_contents(filename)
-    contents = clean_contents(contents)
-    return make_df(contents)
-
-adult_data = get_data('./adult.data.csv')
-adult_test = get_data('./adult.test.csv')
 
 
 if __name__ == "__main__":
-    for i in adult_test:
-        print("Name: {}\tType: {}".format(i, type(adult_test[i][0])))
+    print("Adult test data:\n" + str(adult_test.head()))
