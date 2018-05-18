@@ -40,6 +40,9 @@ bit_loop:
     cmp     $256, %rsi
     jl      dividend_loop           #while dividend < 256, do dividend loop
     leaq    crcTable, %rax
+# TODO testing
+    mov     %rcx, %rax
+# TODO end testing
     ret                             #else return
 
 #Start of CRC fast

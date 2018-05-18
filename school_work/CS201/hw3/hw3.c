@@ -9,7 +9,7 @@
 #define TRIALS 1000000L
 #define FAST_TRIALS 10L
 
-void crcInit(void);
+char* crcInit(void);
 char crcFast(char* message, long nBytes);
 
 int main(int argc, char*argv[])

@@ -46,11 +46,9 @@ bit_loop_finally:
     add     $1, %rsi                #++dividend
     cmp     $256, %rsi
     jl      dividend_loop           #while dividend < 256, do dividend loop
-/*
 # TODO testing
     mov     %rcx, %rax
 # TODO end testing
-*/
     ret                             #else return
 
 

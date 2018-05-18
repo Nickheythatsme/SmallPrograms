@@ -7,7 +7,7 @@
 
 static char crcTable[256] = {0}; /* Global Initialized to 0. DATA Segment*/
 
-void crcInit(void)
+char* crcInit(void)
 {
   char remainder;
   int dividend;
@@ -47,6 +47,7 @@ void crcInit(void)
       crcTable[dividend] = remainder;
     }
 
+    return crcTable;
 }
 
 char crcFast(char* message, long nBytes)
