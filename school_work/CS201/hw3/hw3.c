@@ -7,7 +7,7 @@
 #include <sys/time.h>
 
 #define TRIALS 1000000L
-#define FAST_TRIALS 1000000L
+#define FAST_TRIALS 10L
 
 void crcInit(void);
 char crcFast(char* message, long nBytes);
@@ -35,7 +35,7 @@ int main(int argc, char*argv[])
 
   timems=(tf.tv_sec*1000+tf.tv_usec/1000) - (ti.tv_sec*1000+tf.tv_usec/1000);
   printf("CRC:%X\n", retval);
-printf("Iterations: %lu, TotalTime : %lu ms, IterTime : %lu us\n", i, timems, (1000*timems)/TRIALS);
+  printf("Iterations: %lu, TotalTime : %lu ms, IterTime : %lu us\n", i, timems, (1000*timems)/TRIALS);
   return 0;
 }
 
