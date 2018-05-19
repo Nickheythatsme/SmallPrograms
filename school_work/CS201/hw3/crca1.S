@@ -69,3 +69,9 @@ crcFastLoop:
     jl      crcFastLoop         #Continue for loop
     mov     %rcx, %rax
     ret
+
+
+.text
+.global
+crcInit:
+    ret 

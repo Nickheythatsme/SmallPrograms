@@ -4,7 +4,10 @@
 
     .data
 crcTable:
-    .fill   200
+    # .fill   200
+    .rept   256
+    .byte   0
+    .endr
 POLYNOMIAL:
     .long   0xD5
 
