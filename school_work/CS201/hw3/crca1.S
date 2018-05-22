@@ -4,7 +4,9 @@
 
     .data
 crcTable:
-    .fill   200
+    .rept   256
+    .byte    0
+    .endr
 POLYNOMIAL:
     .long   0xD5
 
@@ -46,9 +48,6 @@ bit_loop_finally:
     add     $1, %rsi                #++dividend
     cmp     $256, %rsi
     jl      dividend_loop           #while dividend < 256, do dividend loop
-# TODO testing
-    mov     %rcx, %rax
-# TODO end testing
     ret                             #else return
 
 
@@ -64,6 +63,7 @@ crcFastLoop:
     xorb    %cl, %r8b           #data = data ^ remainder
     leaq    crcTable, %r9
     movb    (%r9,%r8,1), %cl    #remainder = crcTable[data];
+    inc     %rdx
     addq    $1, %rdx            #++byte
     cmp     %rsi,%rdx           #byte < nBytes
     jl      crcFastLoop         #Continue for loop
@@ -71,7 +71,3 @@ crcFastLoop:
     ret
 
 
-.text
-.global
-crcInit:
-    ret 

@@ -10,11 +10,14 @@ char_len:
     je      char_len_1
     jne     char_len_2
 char_len_1:
-    mov    rax, 1
-    jmp    fin
+    mov     rax, 1
     ret
 char_len_2:
-    mov    rax, 2
-    jmp    fin
-fin:
+    mov     rax, 2
+    ret
+char_len_3:
+    mov     rax, 3
+    ret
+char_len_4:
+    mov     rax, 4
     ret

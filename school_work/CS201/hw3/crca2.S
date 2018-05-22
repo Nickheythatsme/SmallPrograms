@@ -38,14 +38,11 @@ bit_loop:
 
 #end of bit loop
     leaq    crcTable, %rcx
+    # movq    $crcTable, %rcx
     movb    %dl, (%rcx,%rsi,1)      #crcTable[dividend] = remainder
     add     $1, %rsi                #++dividend
     cmp     $256, %rsi
     jl      dividend_loop           #while dividend < 256, do dividend loop
-    leaq    crcTable, %rax
-# TODO testing
-    mov     %rcx, %rax
-# TODO end testing
     ret                             #else return
 
 #Start of CRC fast
