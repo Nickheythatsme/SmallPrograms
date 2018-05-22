@@ -1,25 +1,28 @@
 #Nicholas Grout
 .PHONY: clean
-CFLAGS= -ansi -pedantic -O0 -Wall -g
-CC=gcc
+CC=g++
+CCFLAGS=-g -Wall -std=c++14
+C=gcc
+CFLAGS= -ansi -pedantic -O3 -Wall -g
 AS=nasm
+ASFLAGS=-f elf64
 
 all: utf8 utf8_asm 
 
 utf8: main.o utf8.o
-	$(CC) -g -o $@ $(CFLAGS) $^
+	$(CC) $(CCFLAGS) -o $@ $^
 
 utf8_asm: main.o utf8_asm.o
-	$(CC) -g -o $@ $(CFLAGS) $^
+	$(CC) $(CCFLAGS) -o $@ $^
 
-main.o: main.c
-	$(CC) -g -o $@ $(CFLAGS) -c $^
+main.o: main.cpp test_case.h test_case.cpp
+	$(CC) $(CCFLAGS) -o $@ -c $<
 
 utf8.o: utf8.c
-	$(CC) -g -o $@ $(CFLAGS) -c $^
+	$(C) $(CFLAGS) -o $@ -c $^
 
 utf8_asm.o: utf8.asm
-	$(AS) -f elf64 -o $@ $<
+	$(AS) $(ASFLAGS) -o $@ $<
 
 
 clean:
