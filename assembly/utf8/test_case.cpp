@@ -14,12 +14,14 @@ std::ostream& operator<<(std::ostream &out, const test_err &rhs)
 std::ostream& operator<<(std::ostream& out, const test_result &rhs)
 {
     out << "Test name: " << rhs.name << endl
-        << "\tPassed: " << rhs.passed << endl
-        << "\tIterations completed: " << rhs.iterations << endl
-        << "\tAverage exec time: " << rhs.display_time(rhs.average) << endl
-        << "\tTotal exec time:   " << rhs.display_time(rhs.total);
+        << "\tStarted:\t" << ((rhs.started) ? "true" : "false") << endl
+        << "\tPassed: \t" << ((rhs.passed) ? "true" : "false") << endl
+        << "\tIterations completed:\t" << rhs.iterations << endl
+        << "\tAverage exec time:\t" << rhs.display_time(rhs.average) << endl
+        << "\tTotal exec time:\t" << rhs.display_time(rhs.total);
     return out;
 }
+
 // format the time and return it as a string
 string test_result::display_time(const std::chrono::duration<double> &t)
 {
@@ -48,12 +50,12 @@ string test_result::display_time(const std::chrono::duration<double> &t)
 
 /* base configuration implementation */
 // Constructor with arguments
-base_config::base_config(const string &_name, bool _verbose, bool _copy_data, size_t _iterations)
+base_config::base_config(const string &_name, bool _verbose, bool _copy_data, size_t _iterations) :
+    name(_name),
+    verbose(_verbose),
+    copy_data(_copy_data),
+    iterations(_iterations)
 {
-    name = _name;
-    verbose = _verbose;
-    copy_data = _copy_data;
-    iterations = _iterations;
 }
 
 // Assign the values in this base_config to equal another base_config
@@ -92,14 +94,14 @@ configuration<T,D>::configuration(custom_function<T,D> _func, T &&_obj, D &&_dat
 template<class T, class D>
 unit_test<T,D>::unit_test(custom_function<T,D> _func, const T& _obj, const D &_data) :
     configuration<T,D>(_func, _obj, _data),
-    result()
+    result(this->name)
 {}
 
 // Constructor with objects being moved
 template<class T, class D>
 unit_test<T,D>::unit_test(custom_function<T,D> _func,  T&& _obj,  D&& _data) :
     configuration<T,D>(_func, std::move(_obj), std::move(_data)),
-    result()
+    result(this->name)
 {}
 
 // Commence one test.
@@ -120,7 +122,8 @@ decltype(auto) unit_test<T,D>::commence_test(T &obj, D &data)
 template<class T, class D>
 test_result unit_test<T,D>::start()
 {
-    result = test_result();
+    result = test_result(this->name);
+    result.started = true;
 
     // Try to catch exceptions
     try{
@@ -136,11 +139,13 @@ test_result unit_test<T,D>::start()
                 result.total += commence_test(this->obj, this->data);
             ++result.iterations;
         }
-    } catch(const test_err &err){
+        // Catch and display test_err
+    } catch(const test_err &err)
+    {
         std::cerr << err << endl;
         return result;
-    }
-    catch(...)
+        // Catch and display generic error
+    }catch(...)
     {
         std::cerr << "Unknown error" << endl;
         return result;
@@ -148,6 +153,5 @@ test_result unit_test<T,D>::start()
 
     result.passed = true;
     result.average = result.total/result.iterations;
-    result.name = this->name;
     return result;
 }

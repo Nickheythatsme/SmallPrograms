@@ -34,6 +34,7 @@ public:
 struct test_result
 {
     test_result() = default;
+    test_result(const string &_name) : name(_name) {}
     test_result(const test_result &rhs) = default;
     test_result(test_result &&rhs) = default;
     ~test_result() = default;
@@ -41,6 +42,7 @@ struct test_result
     static string display_time(const std::chrono::duration<double> &t);
     test_result&operator=(const test_result &_test_result) = default;
 
+    bool started {false};
     bool passed {false};
     string name {};
     size_t iterations {0};
@@ -59,7 +61,7 @@ public:
     // Setters 
     void set_verbose(bool value=true) {verbose = value;}
     void set_iterations(size_t _iterations) {iterations = _iterations;}
-    void set_name(string _name) {name = _name;}
+    void set_name(const string &_name) {name = _name;}
     void set_copy_data(bool _copy_data) {copy_data=_copy_data;}
 
     // Getters
@@ -96,9 +98,8 @@ public:
     configuration& set_base_config(const base_config &rhs) {base_config::operator=(rhs); return *this;}
 
     // Getters
-    auto get_object() const {return obj;}
-    auto get_data() const {return data;}
-    auto get_base_config() const {return base_config(*this);}
+    const T& get_object() const {return obj;}
+    const D& get_data() const {return data;}
 protected:
     custom_function<T,D> func;
     D data;
@@ -120,7 +121,7 @@ class unit_test : public configuration<T,D>
         test_result start();
 
         // Return the result of the test
-        auto get_result() { return result; }
+        const test_result& get_result() { result.name = this->name; return result; }
     protected:
         decltype(auto) commence_test(T &obj, D &data);
     private:
