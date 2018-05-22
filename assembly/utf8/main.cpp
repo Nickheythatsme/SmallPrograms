@@ -7,11 +7,11 @@
 
 using namespace std;
 
-extern "C" {
+//extern "C" {
     size_t char_len(signed char f);
     size_t delims_str(const char *str, const char *delims);
     int delims_char(const char *c, const char *delims);
-}
+//}
 
 // Get the contents of the test file 
 string get_fcontents(const char *filename)

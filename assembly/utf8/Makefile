@@ -19,7 +19,7 @@ main.o: main.cpp test_case.h test_case.cpp
 	$(CC) $(CCFLAGS) -o $@ -c $<
 
 utf8.o: utf8.c
-	$(C) $(CFLAGS) -o $@ -c $^
+	$(CC) $(CCFLAGS) -o $@ -c $^
 
 utf8_asm.o: utf8.asm
 	$(AS) $(ASFLAGS) -o $@ $<
