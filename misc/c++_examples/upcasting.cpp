@@ -1,13 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class abase
-{
-    public:
-        abase();
-};
-
-class base : public abase
+class base
 {
     public:
         base() {}
@@ -30,15 +24,15 @@ void test(const base &rhs)
     base *ptr;
     cout << rhs.message() << endl;
 
-    if (const base *d = dynamic_cast<const base *>(&rhs))
-    {
-        cout << "base" << endl;
-        ptr = new base(*d);
-    }
     if (const deriv *d = dynamic_cast<const deriv *>(&rhs))
     {
         cout << "deriv" << endl;
         ptr = new deriv(*d);
+    }
+    else if (const base *d = dynamic_cast<const base *>(&rhs))
+    {
+        cout << "base" << endl;
+        ptr = new base(*d);
     }
     cout << endl;
 }
